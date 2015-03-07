@@ -1,33 +1,5 @@
 LOCAL_PATH := $(call my-dir)
 
-#########################
-
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES :=  mDNSPosix/PosixDaemon.c    \
-                    mDNSPosix/mDNSPosix.c      \
-                    mDNSPosix/mDNSUNP.c        \
-                    mDNSCore/mDNS.c            \
-                    mDNSCore/DNSDigest.c       \
-                    mDNSCore/uDNS.c            \
-                    mDNSCore/DNSCommon.c       \
-                    mDNSShared/uds_daemon.c    \
-                    mDNSShared/mDNSDebug.c     \
-                    mDNSShared/dnssd_ipc.c     \
-                    mDNSShared/GenLinkedList.c \
-                    mDNSShared/PlatformCommon.c
-
-LOCAL_MODULE := mdnsd
-LOCAL_MODULE_TAGS := optional
-
-LOCAL_C_INCLUDES := external/mdnsresponder/mDNSPosix \
-                    external/mdnsresponder/mDNSCore  \
-                    external/mdnsresponder/mDNSShared
-
-LOCAL_CFLAGS := -W -Wall -D__ANDROID__ -D_GNU_SOURCE -DHAVE_IPV6 -DNOT_HAVE_SA_LEN -DUSES_NETLINK -DTARGET_OS_LINUX -fno-strict-aliasing -DHAVE_LINUX -DMDNS_DEBUGMSGS=0 -DMDNS_UDS_SERVERPATH=\"/dev/socket/mdnsd\" -DMDNS_USERNAME=\"mdnsr\" -DPLATFORM_NO_RLIMIT
-LOCAL_STATIC_LIBRARIES := libc libcutils liblog
-LOCAL_FORCE_STATIC_EXECUTABLE := true
-include $(BUILD_EXECUTABLE)
-
 ##########################
 
 commonSources := \
